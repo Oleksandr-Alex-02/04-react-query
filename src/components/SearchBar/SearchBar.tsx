@@ -3,7 +3,7 @@ import css from './SearchBar.module.css'
 import toast, { Toaster } from 'react-hot-toast'
 
 interface SearchBarProps {
-    onSubmit: (query: string) => Promise<void>
+    onSubmit: (query: string) => void
 }
 
 const notify = () => toast('Please enter your search query.')

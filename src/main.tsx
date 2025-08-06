@@ -1,4 +1,3 @@
-// main.tsx
 
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import ReactDOM from 'react-dom/client';
