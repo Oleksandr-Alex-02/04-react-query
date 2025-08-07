@@ -17,7 +17,8 @@ export const getMovies = async (query: string): Promise<Movie[]> => {
                 query: query,
                 include_adult: false,
                 language: "en-US",
-                page: 1
+                page: 1,
+                total_page: 5
             },
             headers: {
                 accept: "application/json",
