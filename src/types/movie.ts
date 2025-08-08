@@ -7,5 +7,9 @@ export interface Movie {
     overview: string;
     release_date: string;
     vote_average: number;
+}
+
+export interface Data {
     total_page: number;
 }
+
