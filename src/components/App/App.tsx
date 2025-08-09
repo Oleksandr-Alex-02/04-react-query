@@ -18,12 +18,12 @@ const notify = () => toast('No movies found for your request.')
 
 export default function App() {
   const [search, setSearch] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
+  const [page, setPage] = useState(1);
   const [selectedMovie, setSelectedMovie] = useState<Movie | null>(null);
 
   const { data, isLoading, isError } = useQuery({
-    queryKey: ['movies', search, currentPage],
-    queryFn: () => getMovies(search, currentPage),
+    queryKey: ['movies', search, page],
+    queryFn: () => getMovies(search, page),
     enabled: search !== "",
     placeholderData: keepPreviousData,
   });
@@ -44,8 +44,8 @@ export default function App() {
           pageCount={totalPages}
           pageRangeDisplayed={5}
           marginPagesDisplayed={3}
-          onPageChange={({ selected }) => setCurrentPage(selected + 1)}
-          forcePage={currentPage - 1}
+          onPageChange={({ selected }) => setPage(selected + 1)}
+          forcePage={page - 1}
           containerClassName={css.pagination}
           activeClassName={css.active}
           nextLabel="→"
