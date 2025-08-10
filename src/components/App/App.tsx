@@ -2,11 +2,11 @@
 import css from './App.module.css'
 import toast, { Toaster } from 'react-hot-toast'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery, keepPreviousData } from '@tanstack/react-query'
 import ReactPaginate from 'react-paginate';
 import { Movie } from '../../types/movie'
-import { getMovies } from '../../services/moviesService'
+import { getMovies } from '../../services/movieService'
 
 import SearchBar from '../SearchBar/SearchBar'
 import ErrorMessage from '../ErrorMessage/ErrorMessage'
@@ -28,9 +28,17 @@ export default function App() {
     placeholderData: keepPreviousData,
   });
 
+  useEffect(() => {
+    if (data?.results && data.results.length === 0) {
+      notify()
+    }
+  }, [data])
+
   const totalPages = data?.total_pages || 0;
+
   const handleSearch = (query: string) => {
     setSearch(query);
+    setPage(1)
   };
 
   const handleMovieClick = (movie: Movie) => setSelectedMovie(movie);
@@ -53,7 +61,6 @@ export default function App() {
         />}
         {isLoading && <Loader />}
         {isError && <ErrorMessage />}
-        {data?.results && data.results.length === 0 && notify()}
         {data?.results && <MovieGrid movies={data.results} onSelect={handleMovieClick} />}
         {selectedMovie && <MovieModal movie={selectedMovie} onClose={handleCloseModal} />}
         <Toaster toastOptions={{

@@ -5,12 +5,12 @@ import { createPortal } from 'react-dom'
 import { Movie } from '../../types/movie'
 import { useEffect } from 'react';
 
-interface MovieGridProps {
+interface MovieModalProps {
     movie: Movie;
     onClose: () => void;
 }
 
-export default function MovieModal({ movie, onClose }: MovieGridProps) {
+export default function MovieModal({ movie, onClose }: MovieModalProps) {
 
     useEffect(() => {
         const handleEsc = (e: KeyboardEvent) => {

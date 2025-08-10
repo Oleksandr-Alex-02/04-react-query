@@ -29,5 +29,4 @@ export const getMovies = async (query: string, page: number): Promise<MovieRespo
     return response.data;
 }
 
-
 // movieService.ts
